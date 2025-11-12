@@ -33,35 +33,53 @@ int push(struct stack *s, int value) {
         return 1;  // success
     }
 }
+int pop(struct stack *s) {
+    if (isEmpty(s)) {
+        // printf("Stack Empty\n");
+        return -1;  // failure
+    } else {
+        
+        int value = s->array[s->top];
+        s->top--;
+        printf("poped %d to stack\n", value);
+        return value;  // success
+    }
+}
+void display(struct stack *s){
+    if(isEmpty(s)){
+        printf("stack is empty");
+    }else{
+        for(int i=0; i<=s->top; i++){
+            printf("stack content :%d\n", s->array[i]);
+        }
+    }
+}
 int main() {
     struct stack *s = (struct stack *)malloc(sizeof(struct stack));
     s->size = 5;
     s->top = -1;
     s->array = (int *)malloc(s->size*sizeof(int));  
-    //pushing an element 
-    // s->array[0] = 4;
-    // s->top++;
     
-    // if(isEmpty(s)){
-    //     printf("the stack is empty\n");
-    // }else{
-    //     printf("The stack is not empty\n");
-    // }
-    // if(isFull(s)){
-    //     printf("Stack is Full\n");
-    // }else{
-    //     printf("Stack is not Full\n");
-    // }
+
     push(s, 10);
     push(s, 20);
     push(s, 30);
     push(s, 40);
     push(s, 50);
     push(s, 60);
-    for(int i=0; i<5; i++){
-        printf("%d\n",s->array[i]);
-       
-    }
+
+    display(s);
+    printf("\n");
+
+    pop(s);
+    pop(s);
+    pop(s);
+    pop(s);
+    pop(s);
+    pop(s);
+
+    display(s);
+    printf("\n");
     free(s->array);
     free(s);
     
